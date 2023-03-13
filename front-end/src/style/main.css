@@ -24,7 +24,8 @@
   display:flex;
   flex-direction: column;
   padding:2em;
-  background-color: #252215;
+  background-color: #111111;
+
   align-items:flex-start;
   }
 
