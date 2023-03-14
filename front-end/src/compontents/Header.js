@@ -1,9 +1,8 @@
-// import "../images/logo.png"
 function Header() {
     return (
         <header>
             <nav className="navcontainer">
-            <img src="./logo.png" alt="Logo"></img>
+            <img id="logo" src={require('../images/amw.png')} alt="Logo strony głównej"/>
                 <div className="nav-items">    
                     WYKAZ EWIDENCYJNY MATERIAŁÓW KATEDRY INFORMATYKI
                     <div className="cbd">

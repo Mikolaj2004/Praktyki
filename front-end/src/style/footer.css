@@ -1,4 +1,13 @@
 footer{
-    background-color:#dbd1b6;
+    background-color:#131936;
     height:6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.napis{
+    margin: auto;
+    font-size: small;
 }

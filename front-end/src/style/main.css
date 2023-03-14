@@ -1,9 +1,21 @@
+label{
+  font-size: large;
+}
+
+button:hover{
+  cursor:pointer;
+}
 .container{
   width:100%;
 }
 .show{
-  background-color:red; 
+  background-color:aliceblue; 
   padding:2em;
+  color:#131936;
+}
+.show > button{
+  margin:10px;
+  
 }
 
 .fields{
@@ -24,7 +36,7 @@
   display:flex;
   flex-direction: column;
   padding:2em;
-  background-color: #111111;
+  background-color: aliceblue;
 
   align-items:flex-start;
   }
@@ -33,21 +45,72 @@
   width: 290px;
   margin-left:15px;
 }
-
-button:hover{
-  cursor:pointer;
+table{
+  margin: auto;
+  
+}
+.table-cell > input{
+  width:90%;
+}
+.table-cell > select{
+  width:90%;
+}
+table, th, td{
+  border: 1px solid;
+  border-collapse: collapse;
+}
+th{
+  padding:5px;
 }
 td{
-  width:150px;
-  border-left: 1px solid black;
+  padding: 5px;
+  
 }
-td>*{
-  font-size: 1em;
+.table-cell>button{
+  margin-top:8px;
+  background-color: #d9ac34;
+  border: 0;
+  color: white;
+  height:25px;
 }
-table{
-  width:1350px;
-  border: 1px solid black;
+.table-cell{
+  display:flex;
+  flex-direction: column;
+  font-size: 20px;
 }
-label{
-  font-size: large;
+.value{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.value>p{
+  
+  font-family: monospace;
+}
+#nr-laboranta{
+  width:7%;
+}
+#ilosc{
+  width:7%;
+}
+#miejsce{
+  width:10%;
+}
+#nazwa{
+  width:10%;
+}
+#nr-inwentarzowy{
+  width:10%;
+}
+#uzytkownik-sprzetu{
+  width:10%;
+}
+#rodzaj{
+  width:10%;
+}
+#typ{
+  width:10%;
+}
+#do-wybrakowania{
+  width:10%;
 }

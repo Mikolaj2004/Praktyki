@@ -1,12 +1,21 @@
 *{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  
 }
+html{
+  background-color: #131936;
+}
+#logo{
+  margin:15px;
+}
+
 .navcontainer{
   display:flex;
   justify-content: space-between;
   color:black;
   align-items:center;
-  background-color:#dbd1b6;
+  background-color:#131936;
   height:6em;
 }
 
@@ -41,5 +50,7 @@
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
 }
 .cbd:hover .dc {display: block;  margin-left:4em; top:4.55em;}
-
+.nav-items{
+  color: #FFFFFF;
+}
 
