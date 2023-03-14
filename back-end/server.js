@@ -12,6 +12,28 @@ const conn= mysql.createConnection({
     password: '',
     database: 'database', 
 });
+
+app.put('/update',(req,res)=>{
+    const id = req.body.id;
+    const place = req.body.place;
+    const usernumber = req.body.usernumber;
+    const name = req.body.name;
+    const kind = req.body.kind;
+    const type = req.body.type;
+    const faulty = req.body.faulty;
+    const roomnumber = req.body.roomnumber;
+    const amount = req.body.amount;
+    const user = req.body.user;
+    conn.query("UPDATE wykaz_materialow SET usernumber = ?, amount = ?, place = ?, name = ?, roomnumber = ?, user = ?, kind = ?, type = ?, faulty = ? WHERE id = ?", [usernumber,amount,place,name,roomnumber,user,kind,type,faulty, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
 app.post('/create', (req,res) =>{
     const usernumber = req.body.usernumber;
     const amount = req.body.amount;
@@ -34,7 +56,6 @@ app.post('/create', (req,res) =>{
     });
 
 });
-
 app.get('/wykaz_materialow',(req,res) => {
     conn.query("SELECT * FROM wykaz_materialow", (err, result) =>{
         if(err) {
@@ -45,6 +66,19 @@ app.get('/wykaz_materialow',(req,res) => {
         }
     })
 })
+
+//Delete entire resource
+app.delete('/delete/:id', (req,res)=>{
+    const id = req.params.id
+    conn.query("DELETE FROM wykaz_materialow WHERE id = ?", id, (err, result)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    })
+})
+//Checking that server is available
 app.listen(3001, () =>{
     console.log("Great! Your server is available on port 3001 ")
 });
