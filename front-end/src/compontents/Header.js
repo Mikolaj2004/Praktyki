@@ -8,9 +8,11 @@ function Header() {
                     <div className="cbd">
                         <button class="dropbtn">MENU</button>
                     <div className="dc">
-                        <a href="#">Filtrowanie</a>
-                        <a href="#">Dodawanie</a>
-                        <a href="#">Szukanie</a>
+                        <a>Dodaj:</a>
+                        <hr></hr>
+                        <a href="#">Miejsce </a>
+                        <a href="#">Użytkownika Sprzętu</a>
+                        <a href="#">Rodzaj</a>
                     </div>
                     </div>
                 </div>

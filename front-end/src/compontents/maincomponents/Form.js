@@ -1,5 +1,6 @@
-import {useState} from "react";
-import Axios from 'axios'
+import {useState, useRef, useEffect} from "react";
+import Axios from 'axios';
+import {useReactToPrint} from 'react-to-print';
 function Form() {
     const [usernumber,
         setUsernumber] = useState(0);
@@ -20,6 +21,16 @@ function Form() {
     const [faulty,
         setFaulty] = useState('');
 
+
+    //PDF
+    const pdf = useRef();
+    const generatePDF = useReactToPrint({
+        content: ()=> pdf.current,
+        documentTitle:"Wykaz ewidencji",
+        onAfterPrint:()=>console.log("Values Inserted to PDF"),
+    });
+
+    
     //Udapte
     const [newUsernumber,
         setNewUsernumber] = useState(0);
@@ -105,13 +116,13 @@ function Form() {
                 }));
             });
     };
-    const ShowMaterial = () => {
+    useEffect(() => {
         Axios
             .get('http://localhost:3001/wykaz_materialow')
             .then((response) => {
                 setMaterialList(response.data);
             });
-    };
+    }, []);
     const deleteRecord = (id) => {
         Axios
             .delete(`http://localhost:3001/delete/${id}`)
@@ -222,9 +233,10 @@ function Form() {
 
             </div>
             <div className="show">
-                <button onClick={ShowMaterial}>Pokaż wykaz materiałów</button>
-
+                
+            <div  ref={pdf}>
                 <table>
+                
                     <th id="nr-laboranta">Nr Laboranta</th>
                     <th id="ilosc">Ilosc</th>
                     <th id="miejsce">Miejsce</th>
@@ -396,6 +408,7 @@ function Form() {
                                     </div>
                                 </td>
                                 <td>
+                                    
                                     <div className="table-cell">
                                         <button
                                             onClick={() => {
@@ -412,7 +425,9 @@ function Form() {
 
                     })}
                 </table>
-            </div>
+                </div>
+            <button onClick={generatePDF} class="dropbtn">Create PDF</button>
+        </div>
         </div>
     )
 }
