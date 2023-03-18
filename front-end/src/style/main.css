@@ -1,9 +1,21 @@
+label{
+  font-size: large;
+}
+
+button:hover{
+  cursor:pointer;
+}
 .container{
   width:100%;
 }
 .show{
-  background-color:#e7e1ce; 
+  background-color:#f0f8ff; 
   padding:2em;
+  color:#131936;
+}
+.show > button{
+  margin:10px;
+  
 }
 
 .fields{
@@ -17,14 +29,17 @@
   padding: 10px;
   width:300px;
 }
+
 .inputs > *{
   margin:5px;
+ 
 }
 .form {
   display:flex;
   flex-direction: column;
   padding:2em;
-  background-color: #252215;
+  background-color: aliceblue;
+
   align-items:flex-start;
   }
 
@@ -32,21 +47,58 @@
   width: 290px;
   margin-left:15px;
 }
-
-button:hover{
-  cursor:pointer;
+table{
+  margin: auto;
+  
+}
+.table-cell > input{
+  width:90%;
+}
+.table-cell > select{
+  width:90%;
+}
+table, th, td{
+  border: 1px solid;
+  border-collapse: collapse;
+}
+th{
+  padding:5px;
+}
+tr:nth-child(even){
+background-color: rgb(222, 235, 247);
 }
 td{
-  width:150px;
-  border-left: 1px solid black;
+  padding: 5px;
+  
 }
-td>*{
-  font-size: 1em;
+.table-cell>button{
+  margin-top:8px;
+  background-color: #d9ac34;
+  border: 0;
+  color: white;
+  height:25px;
+  width: 200px;
 }
-table{
-  width:1350px;
-  border: 1px solid black;
+
+.table-cell{
+  display:flex;
+  flex-direction: column;
+  font-size: 20px;
 }
-label{
-  font-size: large;
+.value{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.value>p{
+  
+  font-family: monospace;
+}
+.update-input{
+  display:none;
+}
+.update-column{
+  display: none;
+  width:fit-content;
 }
