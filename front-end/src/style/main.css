@@ -72,7 +72,9 @@ td{
   border: 0;
   color: white;
   height:25px;
+  width: 200px;
 }
+
 .table-cell{
   display:flex;
   flex-direction: column;
@@ -82,35 +84,16 @@ td{
   height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .value>p{
   
   font-family: monospace;
 }
-#nr-laboranta{
-  width:7%;
+.update-input{
+  display:none;
 }
-#ilosc{
-  width:7%;
-}
-#miejsce{
-  width:10%;
-}
-#nazwa{
-  width:10%;
-}
-#nr-inwentarzowy{
-  width:10%;
-}
-#uzytkownik-sprzetu{
-  width:10%;
-}
-#rodzaj{
-  width:10%;
-}
-#typ{
-  width:10%;
-}
-#do-wybrakowania{
-  width:10%;
+.update-column{
+  display: none;
+  width:fit-content;
 }
