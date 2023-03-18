@@ -132,6 +132,27 @@ function Form() {
                 }))
             })
     }
+    const UpdateMenu = () => {
+        var x = document.getElementsByClassName("update-column");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            if(x[i].style.display == 'table-cell'){
+                x[i].style.display = 'none';
+            }else{
+                x[i].style.display = 'table-cell';
+            }
+            
+        }
+        var y = document.getElementsByClassName("update-input");
+        var d;
+        for (d = 0; d < y.length; d++) {
+            if(y[d].style.display == 'block'){
+                y[d].style.display = 'none';
+            }else{
+                y[d].style.display = 'block';
+            }
+        }
+    }
     return (
         <div className="container">
             <div className="form">
@@ -233,8 +254,15 @@ function Form() {
 
             </div>
             <div className="show">
+
                 
-            <div  ref={pdf}>
+            
+
+
+                
+                <button onClick={UpdateMenu}>Edytuj rekordy</button>
+
+<div  ref={pdf}>
                 <table>
                 
                     <th id="nr-laboranta">Nr Laboranta</th>
@@ -256,15 +284,15 @@ function Form() {
                                             <p>{val.usernumber}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="usernumber"
-                                            onChange={(event) => {
-                                            setNewUsernumber(event.target.value)
-                                        }}>
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option >3</option>
-                                        </select>
+                                            <select
+                                                name="usernumber"
+                                                onChange={(event) => {
+                                                setNewUsernumber(event.target.value)
+                                            }}>
+                                                <option >1</option>
+                                                <option >2</option>
+                                                <option >3</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -275,12 +303,12 @@ function Form() {
                                                 {val.amount}</p>
                                         </div>
                                         <div className="update-input">
-                                        <input
-                                            type="text"
-                                            placeholder="Zmień ilość"
-                                            onChange={(event) => {
-                                            setNewAmount(event.target.value)
-                                        }}/>
+                                            <input
+                                                type="text"
+                                                placeholder="Zmień ilość"
+                                                onChange={(event) => {
+                                                setNewAmount(event.target.value)
+                                            }}/>
                                         </div>
                                     </div>
                                 </td>
@@ -291,15 +319,15 @@ function Form() {
                                                 {val.place}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="place"
-                                            onChange={(event) => {
-                                            setNewPlace(event.target.value)
-                                        }}>
-                                            <option >sala102</option>
-                                            <option >sala103</option>
-                                            <option >sala104</option>
-                                        </select>
+                                            <select
+                                                name="place"
+                                                onChange={(event) => {
+                                                setNewPlace(event.target.value)
+                                            }}>
+                                                <option >sala102</option>
+                                                <option >sala103</option>
+                                                <option >sala104</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -309,12 +337,12 @@ function Form() {
                                             <p>{val.name}</p>
                                         </div>
                                         <div className="update-input">
-                                        <input
-                                            type="text"
-                                            placeholder="Zmień nazwę"
-                                            onChange={(event) => {
-                                            setNewName(event.target.value)
-                                        }}/>
+                                            <input
+                                                type="text"
+                                                placeholder="Zmień nazwę"
+                                                onChange={(event) => {
+                                                setNewName(event.target.value)
+                                            }}/>
                                         </div>
                                     </div>
                                 </td>
@@ -324,12 +352,12 @@ function Form() {
                                             <p>{val.roomnumber}</p>
                                         </div>
                                         <div className="update-input">
-                                        <input
-                                            type="text"
-                                            placeholder="Zmień numer inwentarzowy"
-                                            onChange={(event) => {
-                                            setNewRoomnumber(event.target.value)
-                                        }}/>
+                                            <input
+                                                type="text"
+                                                placeholder="Zmień numer inwentarzowy"
+                                                onChange={(event) => {
+                                                setNewRoomnumber(event.target.value)
+                                            }}/>
                                         </div>
                                     </div>
                                 </td>
@@ -340,15 +368,15 @@ function Form() {
                                                 {val.user}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="user"
-                                            onChange={(event) => {
-                                            setNewUser(event.target.value)
-                                        }}>
-                                            <option >m.Kucko</option>
-                                            <option >m.Tycko</option>
-                                            <option >m.Nowak</option>
-                                        </select>
+                                            <select
+                                                name="user"
+                                                onChange={(event) => {
+                                                setNewUser(event.target.value)
+                                            }}>
+                                                <option >m.Kucko</option>
+                                                <option >m.Tycko</option>
+                                                <option >m.Nowak</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -359,15 +387,15 @@ function Form() {
                                                 {val.kind}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="kind"
-                                            onChange={(event) => {
-                                            setNewKind(event.target.value)
-                                        }}>
-                                            <option >Szafa rakowa</option>
-                                            <option >Tablet</option>
-                                            <option >Stół</option>
-                                        </select>
+                                            <select
+                                                name="kind"
+                                                onChange={(event) => {
+                                                setNewKind(event.target.value)
+                                            }}>
+                                                <option >Szafa rakowa</option>
+                                                <option >Tablet</option>
+                                                <option >Stół</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -378,14 +406,14 @@ function Form() {
                                                 {val.type}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="type"
-                                            onChange={(event) => {
-                                            setNewType(event.target.value)
-                                        }}>
-                                            <option >Stanowy</option>
-                                            <option >Bezstanowy</option>
-                                        </select>
+                                            <select
+                                                name="type"
+                                                onChange={(event) => {
+                                                setNewType(event.target.value)
+                                            }}>
+                                                <option >Stanowy</option>
+                                                <option >Bezstanowy</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -396,30 +424,41 @@ function Form() {
                                                 {val.faulty}</p>
                                         </div>
                                         <div className="update-input">
-                                        <select
-                                            name="faulty"
-                                            onChange={(event) => {
-                                            setNewFaulty(event.target.value)
-                                        }}>
-                                            <option >Tak</option>
-                                            <option >Nie</option>
-                                        </select>
+                                            <select
+                                                name="faulty"
+                                                onChange={(event) => {
+                                                setNewFaulty(event.target.value)
+                                            }}>
+                                                <option >Tak</option>
+                                                <option >Nie</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
+
                                 <td>
                                     
+
+                                
+                                <td className="update-column">
+
                                     <div className="table-cell">
+
                                         <button
+                                            
                                             onClick={() => {
                                             updateRecord(val.id)
                                         }}>Zaktualizuj</button>
+
                                         <button
                                             onClick={() => {
                                             deleteRecord(val.id)
                                         }}>Usuń</button>
+
                                     </div>
+                                    
                                 </td>
+                                
                             </tr>
                         );
 
