@@ -13,6 +13,55 @@ const conn= mysql.createConnection({
     database: 'database', 
 });
 
+app.get('/api/get/laboranci', (req, res) => {
+    const sqlInsert = "SELECT * FROM laboranci";
+    conn.query(sqlInsert, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+app.get('/api/get/miejsca', (req, res) => {
+    const sqlInsert = "SELECT * FROM miejsca";
+    conn.query(sqlInsert, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+app.get('/api/get/rodzaj', (req, res) => {
+    const sqlInsert = "SELECT * FROM rodzaj";
+    conn.query(sqlInsert, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+app.get('/api/get/uzytkownik', (req, res) => {
+    const sqlInsert = "SELECT * FROM uzytkownik";
+    conn.query(sqlInsert, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+
 app.put('/update',(req,res)=>{
     const id = req.body.id;
     const place = req.body.place;
@@ -71,6 +120,7 @@ const nazwisko = req.body.nazwisko;
             res.send("Values Inserted");
         }
     });
+    
 });
 
 //Adding new place to database
@@ -78,7 +128,7 @@ const nazwisko = req.body.nazwisko;
 app.post('/newplace',(req,res)=>{
 
     const miejsce = req.body.miejsce;
-        conn.query('INSERT INTO miejsce (miejsce) VALUES (?)', 
+        conn.query('INSERT INTO miejsca (miejsce) VALUES (?)', 
         [miejsce], (err,result) =>{
             if(err){
                 console.log("err");
@@ -87,7 +137,23 @@ app.post('/newplace',(req,res)=>{
                 res.send("Values Inserted");
             }
         });
+        
     });
+
+    app.post('/newlaboranci',(req,res)=>{
+
+        const usernumber = req.body.laboranci;
+            conn.query('INSERT INTO laboranci (laboranci) VALUES (?)', 
+            [miejsce], (err,result) =>{
+                if(err){
+                    console.log("err");
+                }
+                else{
+                    res.send("Values Inserted");
+                }
+            });
+            
+        });
 
 //Adding new kind to database
 
@@ -105,7 +171,7 @@ app.post('/newplace',(req,res)=>{
             });
         });
 
-
+let zmienna = "amount";
 
 app.get('/sortdesc',(req,res) => {
     conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " DESC" , (err, result) =>{
