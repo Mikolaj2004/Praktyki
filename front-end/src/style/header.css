@@ -34,6 +34,9 @@ html{
   display: inline-block;
 
 }
+th{
+  cursor:pointer;
+}
 .dc {
   display: none;
   background-color: #fcfcfa;
@@ -63,11 +66,13 @@ html{
   height:200px;
   border: 1px solid black;
   padding:5px;
+
   padding-top: 10px;
   margin-left:15em;
 }
 .formplace > input, .formuser > input, .formkind >input{
   margin:10px;
+
 }
 .formbtn{
   width:100px;

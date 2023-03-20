@@ -105,6 +105,30 @@ app.post('/newplace',(req,res)=>{
             });
         });
 
+
+
+app.get('/sortdesc',(req,res) => {
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+
+app.get('/sortasc',(req,res) => {
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+
 app.get('/wykaz_materialow',(req,res) => {
     conn.query("SELECT * FROM wykaz_materialow", (err, result) =>{
         if(err) {
