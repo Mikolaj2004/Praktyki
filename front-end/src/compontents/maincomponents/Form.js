@@ -51,6 +51,7 @@ function Form() {
 
     const [MaterialList,
         setMaterialList] = useState([]);
+    
 
     const addMaterial = () => {
         Axios
@@ -81,6 +82,7 @@ function Form() {
                 ]);
             });
     };
+    
     const updateRecord = (id) => {
         Axios
             .put("http://localhost:3001/update", {
@@ -253,7 +255,7 @@ function Form() {
             </div>
             <div className="show">
 
-                <button onClick={UpdateMenu}>Edytuj rekordy</button>
+                <button onClick={UpdateMenu} className="dropbtn">Edytuj rekordy</button>
 
                 <div ref={pdf}>
                     <table>
@@ -452,7 +454,7 @@ function Form() {
                         })}
                     </table>
                 </div>
-                <button onClick={generatePDF} class="dropbtn">Create PDF</button>
+                <button onClick={generatePDF} className="dropbtn">Create PDF</button>
             </div>
         </div>
     )
