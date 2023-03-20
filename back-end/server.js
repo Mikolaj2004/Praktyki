@@ -56,6 +56,79 @@ app.post('/create', (req,res) =>{
     });
 
 });
+
+// Adding new user to database
+app.post('/newuser',(req,res)=>{
+
+const imie = req.body.imie;
+const nazwisko = req.body.nazwisko;
+    conn.query('INSERT INTO uzytkownik (imie) VALUES (?)', 
+    [imie,nazwisko], (err,result) =>{
+        if(err){
+            console.log("err");
+        }
+        else{
+            res.send("Values Inserted");
+        }
+    });
+});
+
+//Adding new place to database
+
+app.post('/newplace',(req,res)=>{
+
+    const miejsce = req.body.miejsce;
+        conn.query('INSERT INTO miejsce (miejsce) VALUES (?)', 
+        [miejsce], (err,result) =>{
+            if(err){
+                console.log("err");
+            }
+            else{
+                res.send("Values Inserted");
+            }
+        });
+    });
+
+//Adding new kind to database
+
+    app.post('/newkind',(req,res)=>{
+
+        const rodzaj = req.body.rodzaj;
+            conn.query('INSERT INTO rodzaj (rodzaj) VALUES (?)', 
+            [rodzaj], (err,result) =>{
+                if(err){
+                    console.log("err");
+                }
+                else{
+                    res.send("Values Inserted");
+                }
+            });
+        });
+
+
+
+app.get('/sortdesc',(req,res) => {
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+
+app.get('/sortasc',(req,res) => {
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+
 app.get('/wykaz_materialow',(req,res) => {
     conn.query("SELECT * FROM wykaz_materialow", (err, result) =>{
         if(err) {

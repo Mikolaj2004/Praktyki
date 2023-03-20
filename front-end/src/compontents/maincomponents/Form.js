@@ -51,6 +51,7 @@ function Form() {
 
     const [MaterialList,
         setMaterialList] = useState([]);
+    
 
     const addMaterial = () => {
         Axios
@@ -81,6 +82,7 @@ function Form() {
                 ]);
             });
     };
+    
     const updateRecord = (id) => {
         Axios
             .put("http://localhost:3001/update", {
@@ -114,6 +116,18 @@ function Form() {
                 }));
             });
     };
+    const SortMaterialDESC = () =>{
+        Axios.get('http://localhost:3001/sortdesc')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortMaterialASC = () =>{
+        Axios.get('http://localhost:3001/sortasc')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
     useEffect(() => {
         Axios
             .get('http://localhost:3001/wykaz_materialow')
@@ -249,17 +263,18 @@ function Form() {
 
                 <button className="add" onClick={addMaterial}>
                     Dodaj do bazy</button>
+                
 
             </div>
             <div className="show">
 
-                <button onClick={UpdateMenu}>Edytuj rekordy</button>
+                <button onClick={UpdateMenu} className="dropbtn">Edytuj rekordy</button>
 
                 <div ref={pdf}>
                     <table>
 
                         <th id="nr-laboranta">Nr Laboranta</th>
-                        <th id="ilosc">Ilosc</th>
+                        <th id="ilosc" onClick={SortMaterialDESC} onDoubleClick={SortMaterialASC}>Ilosc</th>
                         <th id="miejsce">Miejsce</th>
                         <th id="nazwa">Nazwa</th>
                         <th id="nr-inwentarzowy">Nr Inwentarzowy</th>
@@ -452,7 +467,7 @@ function Form() {
                         })}
                     </table>
                 </div>
-                <button onClick={generatePDF} class="dropbtn">Create PDF</button>
+                <button onClick={generatePDF} className="dropbtn">Create PDF</button>
             </div>
         </div>
     )
