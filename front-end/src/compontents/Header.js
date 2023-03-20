@@ -50,6 +50,7 @@ function Header() {
                     }
                 ]);
             });
+            window.location.reload();
     };
     //Adding new place
 
@@ -67,6 +68,7 @@ function Header() {
                     }
                 ]);
             });
+            window.location.reload();
     };
     //Adding new Kind
 
@@ -84,6 +86,7 @@ function Header() {
                     }
                 ]);
             });
+            window.location.reload();
     };
 
     return (
