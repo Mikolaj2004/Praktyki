@@ -141,6 +141,7 @@ function Header() {
                     }
                 ]);
             });
+            window.location.reload();
     };
     return (
         <header>
@@ -151,13 +152,12 @@ function Header() {
                     <div className="cbd">
                         <button class="dropbtn">MENU</button>
                         <div className="dc">
-                            <a>Dodaj:</a>
-                            <hr></hr>
-                            <a onClick={ShowFormPlace}>Miejsce
-                            </a>
-                            <a onClick={ShowFormUser}>Użytkownika Sprzętu</a>
-                            <a onClick={ShowFormKind}>Rodzaj</a>
-                            <a onClick={ShowFormUsernumber}>Laborant</a>
+                            
+                            <a onClick={ShowFormUsernumber}>Dodaj Nr Laboranta</a>
+                            <a onClick={ShowFormPlace}>Dodaj Miejsce</a>
+                            <a onClick={ShowFormUser}>Dodaj Użytkownika Sprzętu</a>
+                            <a onClick={ShowFormKind}>Dodaj Rodzaj</a>
+                            
                             <a onClick={ShowFormSort}>Filtracja</a>
                         </div>
                     </div>
