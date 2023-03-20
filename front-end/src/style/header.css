@@ -57,12 +57,17 @@ html{
   display:none;
   position:absolute;
   text-align:center;
+  
   color:black;
   width:260px;
   height:200px;
   border: 1px solid black;
   padding:5px;
-  margin-left:18em;
+  padding-top: 10px;
+  margin-left:15em;
+}
+.formplace > input, .formuser > input, .formkind >input{
+  margin:10px;
 }
 .formbtn{
   width:100px;
