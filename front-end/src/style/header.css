@@ -56,7 +56,7 @@ th{
 .nav-items{
   color: #FFFFFF;
 }
-.formplace, .formuser, .formkind{
+.formplace, .formuser, .formkind, .formsort, .formusernumber{
   display:none;
   position:absolute;
   text-align:center;

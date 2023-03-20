@@ -1,7 +1,9 @@
 import {useState, useRef, useEffect} from "react";
 import Axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
+import ReactPaginate from 'react-paginate';
 function Form() {
+
     const [usernumber,
         setUsernumber] = useState(0);
     const [amount,
@@ -28,6 +30,12 @@ function Form() {
         documentTitle: "Wykaz ewidencji",
         onAfterPrint: () => console.log("Values Inserted to PDF")
     });
+
+    //Paggination
+    const [pageNumber, setPageNumber] = useState(0);
+    const usersPerPage = 30;
+    const pagesVisited = pageNumber * usersPerPage
+    //const displayUsers = MaterialList.slice(pagesVisited, pagesVisited + usersPerPage).map(MaterialList = >) 
 
     //Udapte
     const [newUsernumber,
@@ -139,18 +147,120 @@ function Form() {
                 }));
             });
     };
-    const SortMaterialDESC = () =>{
-        Axios.get('http://localhost:3001/sortdesc')
+
+    // Order by DESC
+    const SortUsernumberDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescusernumber')
         .then((response) => {
             setMaterialList(response.data);
         });
     }
-    const SortMaterialASC = () =>{
-        Axios.get('http://localhost:3001/sortasc')
+    const SortAmountDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescamount')
         .then((response) => {
             setMaterialList(response.data);
         });
     }
+    const SortPlaceDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescplace')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortNameDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescname')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortRoomnumberDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescroomnumber')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortUserDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescuser')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortKindDESC = () =>{
+        Axios.get('http://localhost:3001/sortdesckind')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortTypeDESC = () =>{
+        Axios.get('http://localhost:3001/sortdesctype')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortFaultyDESC = () =>{
+        Axios.get('http://localhost:3001/sortdescfaulty')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    // Order by ASC
+
+    const SortUsernumberASC = () =>{
+        Axios.get('http://localhost:3001/sortascusernumber')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortAmountASC = () =>{
+        Axios.get('http://localhost:3001/sortascamount')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortPlaceASC = () =>{
+        Axios.get('http://localhost:3001/sortascplace')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortNameASC = () =>{
+        Axios.get('http://localhost:3001/sortascname')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortRoomnumberASC = () =>{
+        Axios.get('http://localhost:3001/sortascroomnumber')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortUserASC = () =>{
+        Axios.get('http://localhost:3001/sortascuser')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortKindASC = () =>{
+        Axios.get('http://localhost:3001/sortasckind')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortTypeASC = () =>{
+        Axios.get('http://localhost:3001/sortasctype')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortFaultyASC = () =>{
+        Axios.get('http://localhost:3001/sortascfaulty')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+
+    //On load display data
     useEffect(() => {
         Axios
             .get('http://localhost:3001/wykaz_materialow')
@@ -158,6 +268,9 @@ function Form() {
                 setMaterialList(response.data);
             });
     }, []);
+    
+
+    //Delete records from database
     const deleteRecord = (id) => {
         Axios
             .delete(`http://localhost:3001/delete/${id}`)
@@ -167,6 +280,7 @@ function Form() {
                 }))
             })
     }
+    //Updateing 
     const UpdateMenu = () => {
         var x = document.getElementsByClassName("update-column");
         var i;
@@ -188,6 +302,8 @@ function Form() {
             }
         }
     }
+
+    // Return html
     return (
         <div className="container">
             <div className="form">
@@ -298,15 +414,15 @@ function Form() {
                 <div ref={pdf}>
                     <table>
 
-                        <th id="nr-laboranta">Nr Laboranta</th>
-                        <th id="ilosc" onClick={SortMaterialDESC} onDoubleClick={SortMaterialASC}>Ilosc</th>
-                        <th id="miejsce">Miejsce</th>
-                        <th id="nazwa">Nazwa</th>
-                        <th id="nr-inwentarzowy">Nr Inwentarzowy</th>
-                        <th id="uzytkownik-sprzetu">Użytkownik sprzętu</th>
-                        <th id="rodzaj">Rodzaj</th>
-                        <th id="typ">Typ</th>
-                        <th id="do-wybrakowania">Do wybrakowania</th>
+                        <th id="nr-laboranta"onClick={SortUsernumberDESC}onDoubleClick={SortUsernumberASC}>Nr Laboranta</th>
+                        <th id="ilosc" onClick={SortAmountDESC}onDoubleClick={SortAmountASC}>Ilosc</th>
+                        <th id="miejsce"onClick={SortPlaceDESC}onDoubleClick={SortPlaceASC}>Miejsce</th>
+                        <th id="nazwa"onClick={SortNameDESC}onDoubleClick={SortNameASC}>Nazwa</th>
+                        <th id="nr-inwentarzowy"onClick={SortRoomnumberDESC}onDoubleClick={SortRoomnumberASC}>Nr Inwentarzowy</th>
+                        <th id="uzytkownik-sprzetu"onClick={SortUserDESC}onDoubleClick={SortUserASC}>Użytkownik sprzętu</th>
+                        <th id="rodzaj"onClick={SortKindDESC}onDoubleClick={SortKindASC}>Rodzaj</th>
+                        <th id="typ"onClick={SortTypeDESC}onDoubleClick={SortTypeASC}>Typ</th>
+                        <th id="do-wybrakowania"onClick={SortFaultyDESC}onDoubleClick={SortFaultyASC}>Do wybrakowania</th>
 
                         {MaterialList.map((val, key) => {
                             return (
