@@ -116,6 +116,18 @@ function Form() {
                 }));
             });
     };
+    const SortMaterialDESC = () =>{
+        Axios.get('http://localhost:3001/sortdesc')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
+    const SortMaterialASC = () =>{
+        Axios.get('http://localhost:3001/sortasc')
+        .then((response) => {
+            setMaterialList(response.data);
+        });
+    }
     useEffect(() => {
         Axios
             .get('http://localhost:3001/wykaz_materialow')
@@ -251,6 +263,7 @@ function Form() {
 
                 <button className="add" onClick={addMaterial}>
                     Dodaj do bazy</button>
+                
 
             </div>
             <div className="show">
@@ -261,7 +274,7 @@ function Form() {
                     <table>
 
                         <th id="nr-laboranta">Nr Laboranta</th>
-                        <th id="ilosc">Ilosc</th>
+                        <th id="ilosc" onClick={SortMaterialDESC} onDoubleClick={SortMaterialASC}>Ilosc</th>
                         <th id="miejsce">Miejsce</th>
                         <th id="nazwa">Nazwa</th>
                         <th id="nr-inwentarzowy">Nr Inwentarzowy</th>
