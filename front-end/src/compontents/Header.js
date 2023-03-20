@@ -6,32 +6,70 @@ function Header() {
         var x = document.getElementById('formplace');
         var y = document.getElementById('formuser');
         var z = document.getElementById('formkind');
+        var a = document.getElementById('formsort');
+        var b = document.getElementById('formusernumber');
 
         x.style.display = 'block';
         y.style.display = 'none';
         z.style.display = 'none';
+        a.style.display = 'none';
+        b.style.display = 'none';
+        
     };
 
     const ShowFormUser = () => {
         var x = document.getElementById('formplace');
         var y = document.getElementById('formuser');
         var z = document.getElementById('formkind');
+        var a = document.getElementById('formsort');
+        var b = document.getElementById('formusernumber');
 
         x.style.display = 'none';
         y.style.display = 'block';
         z.style.display = 'none';
+        a.style.display = 'none';
+        b.style.display = 'none';
     };
 
     const ShowFormKind = () => {
         var x = document.getElementById('formplace');
         var y = document.getElementById('formuser');
         var z = document.getElementById('formkind');
+        var a = document.getElementById('formsort');
+        var b = document.getElementById('formusernumber');
 
         x.style.display = 'none';
         y.style.display = 'none';
         z.style.display = 'block';
+        a.style.display = 'none';
+        b.style.display = 'none';
     };
+    const ShowFormSort = () => {
+        var x = document.getElementById('formplace');
+        var y = document.getElementById('formuser');
+        var z = document.getElementById('formkind');
+        var a = document.getElementById('formsort');
+        var b = document.getElementById('formusernumber');
 
+        x.style.display = 'none';
+        y.style.display = 'none';
+        z.style.display = 'none';
+        a.style.display = 'block';
+        b.style.display = 'none';
+    }
+    const ShowFormUsernumber = () => {
+        var x = document.getElementById('formplace');
+        var y = document.getElementById('formuser');
+        var z = document.getElementById('formkind');
+        var a = document.getElementById('formsort');
+        var b = document.getElementById('formusernumber');
+
+        x.style.display = 'none';
+        y.style.display = 'none';
+        z.style.display = 'none';
+        a.style.display = 'none';
+        b.style.display = 'block';
+    }
 
     
     //Adding new user
@@ -86,6 +124,21 @@ function Header() {
             });
     };
 
+    const [laborant,
+        setLaborant] = useState('');
+    const [ListaLaborantow,
+        setListaLaborantow] = useState([]);
+    const addLaborant = () => {
+        Axios
+            .post('http://localhost:3001/newlaborant', {laborant: laborant})
+            .then(() => {
+                setListaLaborantow([
+                    ...ListaLaborantow, {
+                        laborant: laborant
+                    }
+                ]);
+            });
+    };
     return (
         <header>
             <nav className="navcontainer">
@@ -101,6 +154,8 @@ function Header() {
                             </a>
                             <a onClick={ShowFormUser}>Użytkownika Sprzętu</a>
                             <a onClick={ShowFormKind}>Rodzaj</a>
+                            <a onClick={ShowFormUsernumber}>Laborant</a>
+                            <a onClick={ShowFormSort}>Filtracja</a>
                         </div>
                     </div>
                     <div className="formplace" id="formplace">
@@ -144,6 +199,28 @@ function Header() {
                             setRodzaj(event.target.value)
                         }}></input><br/>
                         <button className="formbtn" onClick={addKind}>Wyślij</button>
+                    </div>
+                    <div className="formusernumber" id="formusernumber">
+                        <label>
+                            Dodaj Laboranta
+                        </label><br/>
+                        <br/>
+                        <input
+                            type="text"
+                            onChange={(event) => {
+                                setLaborant(event.target.value)
+                            }}></input><br/>
+                        <button className="formbtn" onClick={addLaborant}>Wyślij</button>
+                    </div>
+                    <div className="formsort" id="formsort">
+                        <label>
+                            Szukaj 
+                        </label><br/>
+                        <br/>
+                        <input
+                            type="text"
+                            ></input><br/><br/>
+                        <button  className="formbtn">Wyślij</button>
                     </div>
                 </div>
 

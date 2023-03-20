@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const mysql =require('mysql');
@@ -104,11 +105,99 @@ app.post('/newplace',(req,res)=>{
                 }
             });
         });
+// Dodanie nowego laboranta
+
+app.post('/newlaborant',(req,res)=>{
+
+    const laborant = req.body.laborant;
+        conn.query('INSERT INTO laboranci (laborant) VALUES (?)', 
+        [laborant], (err,result) =>{
+            if(err){
+                console.log("err");
+            }
+            else{
+                res.send("Values Inserted");
+            }
+        });
+    });
 
 
+app.get('/sortdescamount',(req,res) => {
+ 
 
-app.get('/sortdesc',(req,res) => {
-    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " DESC" , (err, result) =>{
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY amount DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescusernumber',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY usernumber DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescplace',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY place DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescname',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY name DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescroomnumber',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY roomnumber DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescuser',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY user DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdesckind',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY kind DESC" , (err, result) =>{
         if(err) {
             console.log(err)
         }
@@ -118,8 +207,22 @@ app.get('/sortdesc',(req,res) => {
     })
 })
 
-app.get('/sortasc',(req,res) => {
-    conn.query("SELECT * FROM wykaz_materialow ORDER BY "+ zmienna + " ASC" , (err, result) =>{
+app.get('/sortdesctype',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY type DESC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortdescfaulty',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY faulty DESC" , (err, result) =>{
         if(err) {
             console.log(err)
         }
@@ -129,6 +232,119 @@ app.get('/sortasc',(req,res) => {
     })
 })
 
+
+// SORT BY ASC
+
+app.get('/sortascamount',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY amount ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascusernumber',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY usernumber ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascplace',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY place ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascname',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY name ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascroomnumber',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY roomnumber ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascuser',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY user ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortasckind',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY kind ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+
+app.get('/sortasctype',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY type ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+app.get('/sortascfaulty',(req,res) => {
+ 
+
+    conn.query("SELECT * FROM wykaz_materialow ORDER BY faulty ASC" , (err, result) =>{
+        if(err) {
+            console.log(err)
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
+//
 app.get('/wykaz_materialow',(req,res) => {
     conn.query("SELECT * FROM wykaz_materialow", (err, result) =>{
         if(err) {
