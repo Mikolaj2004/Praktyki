@@ -59,6 +59,11 @@ function Form() {
 
     const [MaterialList,
         setMaterialList] = useState([]);
+
+        const [laboranci, setLaboranci] = useState([]);
+        const [miejsca, setMiejsca] = useState([]);
+        const [rodzaj, setRodzaj] = useState([]);
+        const [uzytkownik, setUzytkownik] = useState([]);
     
 
     const addMaterial = () => {
@@ -90,6 +95,24 @@ function Form() {
                 ]);
             });
     };
+
+    useEffect(()=>{
+        fetch("http://localhost:3001/api/get/laboranci").then((data) => data.json()).then((val)=>setLaboranci(val))
+      }, 
+      []);
+      useEffect(()=>{
+        fetch("http://localhost:3001/api/get/miejsca").then((data) => data.json()).then((val)=>setMiejsca(val))
+      }, 
+      []);
+      useEffect(()=>{
+        fetch("http://localhost:3001/api/get/rodzaj").then((data) => data.json()).then((val)=>setRodzaj(val))
+      }, 
+      []);
+      useEffect(()=>{
+        fetch("http://localhost:3001/api/get/uzytkownik").then((data) => data.json()).then((val)=>setUzytkownik(val))
+      }, 
+      []);
+      
     
     const updateRecord = (id) => {
         Axios
@@ -293,8 +316,9 @@ function Form() {
                             setUsernumber(event.target.value)
                         }}>
                             <option ></option>
-                            <option >1</option>
-                            <option >2</option>
+                            {
+            laboranci.map((val, key)=><option key={key}>{val.laborant}</option>)
+          }
 
                         </select>
                         <label>Ilosc :</label>
@@ -311,9 +335,9 @@ function Form() {
                             setPlace(event.target.value)
                         }}>
                             <option ></option>
-                            <option >sala102</option>
-                            <option >sala103</option>
-                            <option >sala104</option>
+                            {
+            miejsca.map((val, key)=><option key={key}>{val.miejsce}</option>)
+          }
                         </select>
                     </div >
                     <div className="inputs">
@@ -337,9 +361,9 @@ function Form() {
                             setUser(event.target.value)
                         }}>
                             <option ></option>
-                            <option >m.Kucko</option>
-                            <option >m.Tycko</option>
-                            <option >m.Nowak</option>
+                            {
+           uzytkownik.map((val, key)=><option key={key}>{val.imie}</option>)
+          }
                         </select>
                     </div>
                     <div className="inputs">
@@ -350,8 +374,9 @@ function Form() {
                             setKind(event.target.value)
                         }}>
                             <option ></option>
-                            <option >Mebel</option>
-                            <option >Elektronika</option>
+                            {
+            rodzaj.map((val, key)=><option key={key}>{val.rodzaj}</option>)
+          }
 
                         </select>
                         <label>Typ :</label>
@@ -413,9 +438,9 @@ function Form() {
                                                     onChange={(event) => {
                                                     setNewUsernumber(event.target.value)
                                                 }}>
-                                                    <option >1</option>
-                                                    <option >2</option>
-                                                    <option >3</option>
+                                                    {
+            laboranci.map((val, key)=><option key={key}>{val.usernumber}</option>)
+          }
                                                 </select>
                                             </div>
                                         </div>
@@ -448,9 +473,9 @@ function Form() {
                                                     onChange={(event) => {
                                                     setNewPlace(event.target.value)
                                                 }}>
-                                                    <option >sala102</option>
-                                                    <option >sala103</option>
-                                                    <option >sala104</option>
+                                                    {
+            miejsca.map((val, key)=><option key={key}>{val.nr_miejsca}</option>)
+          }
                                                 </select>
                                             </div>
                                         </div>
