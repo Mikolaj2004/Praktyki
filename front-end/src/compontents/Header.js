@@ -40,18 +40,15 @@ function Header() {
     //Adding new user
 
     const [imie, setImie] = useState('');
-    const [nazwisko, setNazwisko] = useState('');
     const [Lista, setLista] = useState([]);
     const addUser = () => {
         Axios.post('http://localhost:3001/newuser',{
         imie : imie,
-        nazwisko: nazwisko,
         })
         .then(() =>{
             setLista([
                 ...Lista,{
                     imie:imie,
-                    nazwisko:nazwisko
                 }
             ]);
         });
@@ -118,10 +115,6 @@ function Header() {
                         <label>Podaj Imie </label><br/>
                         <input type="text"onChange={(event) => {
                             setImie(event.target.value)
-                        }}></input><br/>
-                        <label>Podaj Nazwisko </label><br/>
-                        <input type="text" onChange={(event) => {
-                            setNazwisko(event.target.value)
                         }}></input><br/>
                         <button className="formbtn" onClick={addUser}>Wyślij</button>
                     </div>

@@ -62,7 +62,7 @@ app.post('/newuser',(req,res)=>{
 
 const imie = req.body.imie;
 const nazwisko = req.body.nazwisko;
-    conn.query('INSERT INTO user (imie,nazwisko) VALUES (?,?)', 
+    conn.query('INSERT INTO uzytkownik (imie) VALUES (?)', 
     [imie,nazwisko], (err,result) =>{
         if(err){
             console.log("err");
@@ -78,7 +78,7 @@ const nazwisko = req.body.nazwisko;
 app.post('/newplace',(req,res)=>{
 
     const miejsce = req.body.miejsce;
-        conn.query('INSERT INTO place (miejsce) VALUES (?)', 
+        conn.query('INSERT INTO miejsce (miejsce) VALUES (?)', 
         [miejsce], (err,result) =>{
             if(err){
                 console.log("err");
@@ -94,7 +94,7 @@ app.post('/newplace',(req,res)=>{
     app.post('/newkind',(req,res)=>{
 
         const rodzaj = req.body.rodzaj;
-            conn.query('INSERT INTO kind (rodzaj) VALUES (?)', 
+            conn.query('INSERT INTO rodzaj (rodzaj) VALUES (?)', 
             [rodzaj], (err,result) =>{
                 if(err){
                     console.log("err");
