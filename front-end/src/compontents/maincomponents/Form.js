@@ -2,7 +2,10 @@ import {useState, useRef, useEffect} from "react";
 import Axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
 import ReactPaginate from 'react-paginate';
+
+
 function Form() {
+
 
     const [usernumber,
         setUsernumber] = useState(0);
@@ -262,6 +265,16 @@ function Form() {
 
     //On load display data
     useEffect(() => {
+        let login;
+        let pass;
+        do{
+             login = prompt("Podaj Login");
+        }while(login != "siabada");
+    do{
+        pass = prompt("Podaj Hasło");
+    }while(pass != "kupsko");
+
+
         Axios
             .get('http://localhost:3001/wykaz_materialow')
             .then((response) => {
