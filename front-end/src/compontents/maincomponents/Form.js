@@ -676,8 +676,8 @@ function Form() {
                         }}></input>
                         <label>Nr Inwentarzowy :</label>
                         <input
-                            type="number"
-                            min="0"
+                            type="text"
+                            
                             onChange={(event) => {
                             setRoomnumber(event.target.value)
                         }}></input>
@@ -736,19 +736,22 @@ function Form() {
             </div>
             <div className="show">
 
-                <button onClick={UpdateMenu} className="dropbtn">Edytuj rekordy</button>
+                <button onClick={UpdateMenu} className="buttons">Edytuj rekordy</button>
 
-                <div ref={pdf}>
-                <input type="text" id="myInput0" placeholder="Search for names.." onChange={szukanie0}></input>
-                <input type="text" id="myInput1" placeholder="Search for names.." onChange={szukanie1}></input>
-                <input type="text" id="myInput2" placeholder="Search for names.." onChange={szukanie2}></input>
-                <input type="text" id="myInput3" placeholder="Search for names.." onChange={szukanie3}></input>
-                <input type="text" id="myInput4" placeholder="Search for names.." onChange={szukanie4}></input>
-                <input type="text" id="myInput5" placeholder="Search for names.." onChange={szukanie5}></input>
-                <input type="text" id="myInput6" placeholder="Search for names.." onChange={szukanie6}></input>
-                <input type="text" id="myInput7" placeholder="Search for names.." onChange={szukanie7}></input>
-                <input type="text" id="myInput8" placeholder="Search for names.." onChange={szukanie8}></input>
+                <div className="search-inputs">
+                <input type="text" id="myInput0" placeholder="Szukaj po Nr Laboranta" onChange={szukanie0}></input>
+                <input type="text" id="myInput1" placeholder="Szukaj po Ilości" onChange={szukanie1}></input>
+                <input type="text" id="myInput2" placeholder="Szukaj po Miejscu" onChange={szukanie2}></input>
+                <input type="text" id="myInput3" placeholder="Szukaj po Nazwie" onChange={szukanie3}></input>
+                <input type="text" id="myInput4" placeholder="Szukaj po Nr Inwentarzowym" onChange={szukanie4}></input>
+                <input type="text" id="myInput5" placeholder="Szukaj po Użytkowniku sprzętu" onChange={szukanie5}></input>
+                <input type="text" id="myInput6" placeholder="Szukaj po Rodzaju" onChange={szukanie6}></input>
+                <input type="text" id="myInput7" placeholder="Szukaj po Typie" onChange={szukanie7}></input>
+                <input type="text" id="myInput8" placeholder="Szukaj po Do Wybrakowania" onChange={szukanie8}></input>
+                </div>
 
+                <div className="druk" ref={pdf}>
+                    
 
                     <table id="myTable">
                     
@@ -984,7 +987,7 @@ function Form() {
                         })}
                     </table>
                 </div>
-                <button onClick={generatePDF} className="dropbtn">Create PDF</button>
+                <button onClick={generatePDF} className="buttons">Stwórz PDF/Wydrukuj</button>
             </div>
         </div>
     )
