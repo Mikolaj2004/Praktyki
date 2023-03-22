@@ -1,7 +1,6 @@
 import {useState, useRef, useEffect} from "react";
 import Axios from 'axios';
 import {useReactToPrint} from 'react-to-print';
-import ReactPaginate from 'react-paginate';
 
 
 function Form() {
@@ -26,19 +25,13 @@ function Form() {
     const [faulty,
         setFaulty] = useState('');
 
-    //PDF
-    const pdf = useRef();
-    const generatePDF = useReactToPrint({
-        content: () => pdf.current,
-        documentTitle: "Wykaz ewidencji",
-        onAfterPrint: () => console.log("Values Inserted to PDF")
-    });
+    const [MaterialList,
+        setMaterialList] = useState([]);
 
-    //Paggination
-    const [pageNumber, setPageNumber] = useState(0);
-    const usersPerPage = 30;
-    const pagesVisited = pageNumber * usersPerPage
-    //const displayUsers = MaterialList.slice(pagesVisited, pagesVisited + usersPerPage).map(MaterialList = >) 
+    const [laboranci, setLaboranci] = useState([]);
+    const [miejsca, setMiejsca] = useState([]);
+    const [rodzaj, setRodzaj] = useState([]);
+    const [uzytkownik, setUzytkownik] = useState([]);
 
     //Udapte
     const [newUsernumber,
@@ -60,15 +53,15 @@ function Form() {
     const [newFaulty,
         setNewFaulty] = useState('');
 
-    const [MaterialList,
-        setMaterialList] = useState([]);
 
-        const [laboranci, setLaboranci] = useState([]);
-        const [miejsca, setMiejsca] = useState([]);
-        const [rodzaj, setRodzaj] = useState([]);
-        const [uzytkownik, setUzytkownik] = useState([]);
-    
-
+    //PDF
+    const pdf = useRef();
+    const generatePDF = useReactToPrint({
+        content: () => pdf.current,
+        documentTitle: "Wykaz ewidencji",
+        onAfterPrint: () => console.log("Values Inserted to PDF")
+    });
+    //Display all record
     const addMaterial = () => {
         Axios
             .post('http://localhost:3001/create', {
@@ -98,7 +91,7 @@ function Form() {
                 ]);
             });
     };
-
+    
     useEffect(()=>{
         fetch("http://localhost:3001/api/get/laboranci").then((data) => data.json()).then((val)=>setLaboranci(val))
       }, 
@@ -116,8 +109,8 @@ function Form() {
       }, 
       []);
       
-    
-    const updateRecord = (id) => {
+    //Update all records
+      const updateRecord = (id) => {
         Axios
             .put("http://localhost:3001/update", {
             user: newUser,
@@ -149,6 +142,174 @@ function Form() {
                         : val;
                 }));
             });
+    };
+//Update one record
+    const updateRecordusernumber = (id) => {
+        Axios
+            .put("http://localhost:3001/updateusernumber", {
+            usernumber: newUsernumber,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            usernumber: newUsernumber,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+ const updateRecordamount = (id) => {
+        Axios
+            .put("http://localhost:3001/updateamount", {
+            amount: newAmount,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            amount: newAmount,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+    
+ const updateRecordplace = (id) => {
+        Axios
+            .put("http://localhost:3001/updateplace", {
+            place: newPlace,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            place: newPlace,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+    
+ const updateRecordname = (id) => {
+        Axios
+            .put("http://localhost:3001/updatename", {
+            name: newName,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            name: newName,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+ const updateRecordroomnumber = (id) => {
+        Axios
+            .put("http://localhost:3001/updateroomnumber", {
+            roomnumber: newRoomnumber,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            roomnumber: newRoomnumber,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+ const updateRecorduser = (id) => {
+        Axios
+            .put("http://localhost:3001/updateuser", {
+            user: newUser,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            user: newUser,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+
+
+    
+ const updateRecordkind = (id) => {
+        Axios
+            .put("http://localhost:3001/updatekind", {
+            kind: newKind,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            kind: newKind,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+ const updateRecordtype = (id) => {
+        Axios
+            .put("http://localhost:3001/updatetype", {
+            type: newType,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            type: newType,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
+    };
+    const updateRecordfaulty = (id) => {
+        Axios
+            .put("http://localhost:3001/updatefaulty", {
+            faulty: newFaulty,
+            id: id
+        })
+            .then((response) => {
+                setMaterialList(MaterialList.map((val) => {
+                    return val.id == id
+                        ? {
+                            id: val.id,
+                            faulty: newFaulty,
+                                                }
+                        : val;
+                }));
+            });
+            window.location.reload();
     };
 
     // Order by DESC
@@ -265,16 +426,6 @@ function Form() {
 
     //On load display data
     useEffect(() => {
-        let login;
-        let pass;
-        do{
-             login = prompt("Podaj Login");
-        }while(login != "siabada");
-    do{
-        pass = prompt("Podaj Hasło");
-    }while(pass != "kupsko");
-
-
         Axios
             .get('http://localhost:3001/wykaz_materialow')
             .then((response) => {
@@ -315,9 +466,172 @@ function Form() {
             }
         }
     }
+    function szukanie0() {
+        var input, filter, table, tr, td, i, txtValue,p;
+        input = document.getElementById("myInput0");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            const p = tr[i].querySelectorAll("td")[0].querySelector("div div p");
+            if (p) {
+              const txtValue = p.textContent || p.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        function szukanie1() {
+            var input, filter, table, tr, td, i, txtValue,p;
+            input = document.getElementById("myInput1");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                const p = tr[i].querySelectorAll("td")[1].querySelector("div div p");
+                if (p) {
+                  const txtValue = p.textContent || p.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+            function szukanie2() {
+                var input, filter, table, tr, td, i, txtValue,p;
+                input = document.getElementById("myInput2");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    const p = tr[i].querySelectorAll("td")[2].querySelector("div div p");
+                    if (p) {
+                      const txtValue = p.textContent || p.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }
+                  }
+                }
+                function szukanie3() {
+                    var input, filter, table, tr, td, i, txtValue,p;
+                    input = document.getElementById("myInput3");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        const p = tr[i].querySelectorAll("td")[3].querySelector("div div p");
+                        if (p) {
+                          const txtValue = p.textContent || p.innerText;
+                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                          } else {
+                            tr[i].style.display = "none";
+                          }
+                        }
+                      }
+                    }
+                    function szukanie4() {
+                        var input, filter, table, tr, td, i, txtValue,p;
+                        input = document.getElementById("myInput4");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            const p = tr[i].querySelectorAll("td")[4].querySelector("div div p");
+                            if (p) {
+                              const txtValue = p.textContent || p.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                          }
+                        }
+                        function szukanie5() {
+                            var input, filter, table, tr, td, i, txtValue,p;
+                            input = document.getElementById("myInput5");
+                            filter = input.value.toUpperCase();
+                            table = document.getElementById("myTable");
+                            tr = table.getElementsByTagName("tr");
+                            for (i = 0; i < tr.length; i++) {
+                                const p = tr[i].querySelectorAll("td")[5].querySelector("div div p");
+                                if (p) {
+                                  const txtValue = p.textContent || p.innerText;
+                                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                }
+                              }
+                            }
+                            function szukanie6() {
+                                var input, filter, table, tr, td, i, txtValue,p;
+                                input = document.getElementById("myInput6");
+                                filter = input.value.toUpperCase();
+                                table = document.getElementById("myTable");
+                                tr = table.getElementsByTagName("tr");
+                                for (i = 0; i < tr.length; i++) {
+                                    const p = tr[i].querySelectorAll("td")[6].querySelector("div div p");
+                                    if (p) {
+                                      const txtValue = p.textContent || p.innerText;
+                                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                      } else {
+                                        tr[i].style.display = "none";
+                                      }
+                                    }
+                                  }
+                                }
+                                function szukanie7() {
+                                    var input, filter, table, tr, td, i, txtValue,p;
+                                    input = document.getElementById("myInput7");
+                                    filter = input.value.toUpperCase();
+                                    table = document.getElementById("myTable");
+                                    tr = table.getElementsByTagName("tr");
+                                    for (i = 0; i < tr.length; i++) {
+                                        const p = tr[i].querySelectorAll("td")[7].querySelector("div div p");
+                                        if (p) {
+                                          const txtValue = p.textContent || p.innerText;
+                                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                            tr[i].style.display = "";
+                                          } else {
+                                            tr[i].style.display = "none";
+                                          }
+                                        }
+                                      }
+                                    }
+                                    function szukanie8() {
+                                        var input, filter, table, tr, td, i, txtValue,p;
+                                        input = document.getElementById("myInput8");
+                                        filter = input.value.toUpperCase();
+                                        table = document.getElementById("myTable");
+                                        tr = table.getElementsByTagName("tr");
+                                        for (i = 0; i < tr.length; i++) {
+                                            const p = tr[i].querySelectorAll("td")[8].querySelector("div div p");
+                                            if (p) {
+                                              const txtValue = p.textContent || p.innerText;
+                                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                                tr[i].style.display = "";
+                                              } else {
+                                                tr[i].style.display = "none";
+                                              }
+                                            }
+                                          }
+                                        }
 
     // Return html
     return (
+      
         <div className="container">
             <div className="form">
                 <div className="fields">
@@ -362,8 +676,8 @@ function Form() {
                         }}></input>
                         <label>Nr Inwentarzowy :</label>
                         <input
-                            type="number"
-                            min="0"
+                            type="text"
+                            
                             onChange={(event) => {
                             setRoomnumber(event.target.value)
                         }}></input>
@@ -407,7 +721,7 @@ function Form() {
                             name="faulty"
                             onChange={(event) => {
                             setFaulty(event.target.value)
-                        }}>
+                        }} >
                             <option ></option>
                             <option >Tak</option>
                             <option >Nie</option>
@@ -422,10 +736,25 @@ function Form() {
             </div>
             <div className="show">
 
-                <button onClick={UpdateMenu} className="dropbtn">Edytuj rekordy</button>
+                <button onClick={UpdateMenu} className="buttons">Edytuj rekordy</button>
 
-                <div ref={pdf}>
-                    <table>
+                <div className="search-inputs">
+                <input type="text" id="myInput0" placeholder="Szukaj po Nr Laboranta" onChange={szukanie0}></input>
+                <input type="text" id="myInput1" placeholder="Szukaj po Ilości" onChange={szukanie1}></input>
+                <input type="text" id="myInput2" placeholder="Szukaj po Miejscu" onChange={szukanie2}></input>
+                <input type="text" id="myInput3" placeholder="Szukaj po Nazwie" onChange={szukanie3}></input>
+                <input type="text" id="myInput4" placeholder="Szukaj po Nr Inwentarzowym" onChange={szukanie4}></input>
+                <input type="text" id="myInput5" placeholder="Szukaj po Użytkowniku sprzętu" onChange={szukanie5}></input>
+                <input type="text" id="myInput6" placeholder="Szukaj po Rodzaju" onChange={szukanie6}></input>
+                <input type="text" id="myInput7" placeholder="Szukaj po Typie" onChange={szukanie7}></input>
+                <input type="text" id="myInput8" placeholder="Szukaj po Do Wybrakowania" onChange={szukanie8}></input>
+                </div>
+
+                <div className="druk" ref={pdf}>
+                    
+
+                    <table id="myTable">
+                    
 
                         <th id="nr-laboranta"onClick={SortUsernumberDESC}onDoubleClick={SortUsernumberASC}>Nr Laboranta</th>
                         <th id="ilosc" onClick={SortAmountDESC}onDoubleClick={SortAmountASC}>Ilosc</th>
@@ -440,7 +769,9 @@ function Form() {
                         {MaterialList.map((val, key) => {
                             return (
                                 <tr>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                    updateRecordusernumber(val.id)
+                                }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>{val.usernumber}</p>
@@ -450,31 +781,41 @@ function Form() {
                                                     name="usernumber"
                                                     onChange={(event) => {
                                                     setNewUsernumber(event.target.value)
-                                                }}>
+                                                }} >
+                                                    
                                                     {
             laboranci.map((val, key)=><option key={key}>{val.laborant}</option>)
           }
                                                 </select>
+                                                  
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
+                                        
+                                    </td>   
+                                    <td onDoubleClick={() => {
+                                                    updateRecordamount(val.id)
+                                                }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
                                                     {val.amount}</p>
                                             </div>
                                             <div className="update-input">
+                                                
                                                 <input
                                                     type="text"
                                                     placeholder="Zmień ilość"
                                                     onChange={(event) => {
                                                     setNewAmount(event.target.value)
-                                                }}/>
+                                                }} />
+                                                
                                             </div>
+                                            
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                updateRecordplace(val.id)
+                                            }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
@@ -490,10 +831,13 @@ function Form() {
             miejsca.map((val, key)=><option key={key}>{val.nr_miejsca}</option>)
           }
                                                 </select>
+                                            
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                    updateRecordname(val.id)
+                                                }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>{val.name}</p>
@@ -505,10 +849,13 @@ function Form() {
                                                     onChange={(event) => {
                                                     setNewName(event.target.value)
                                                 }}/>
-                                            </div>
+                                                
+                                            </div>   
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                    updateRecordroomnumber(val.id)
+                                                }}> 
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>{val.roomnumber}</p>
@@ -519,11 +866,16 @@ function Form() {
                                                     placeholder="Zmień numer inwentarzowy"
                                                     onChange={(event) => {
                                                     setNewRoomnumber(event.target.value)
-                                                }}/>
+                                                }}
+                                                />
+                                                    
                                             </div>
+            
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                updateRecorduser(val.id)
+                                            }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
@@ -534,15 +886,19 @@ function Form() {
                                                     name="user"
                                                     onChange={(event) => {
                                                     setNewUser(event.target.value)
+                                                    updateRecorduser(val.id)
                                                 }}>
                                                     {
             uzytkownik.map((val, key)=><option key={key}>{val.imie}</option>)
           }
-                                                </select>
+                                                </select>                                             
                                             </div>
+                                            
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                updateRecordkind(val.id)
+                                            }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
@@ -558,10 +914,14 @@ function Form() {
             rodzaj.map((val, key)=><option key={key}>{val.rodzaj}</option>)
           }
                                                 </select>
+                                                
                                             </div>
+                                            
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                updateRecordtype(val.id)
+                                            }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
@@ -576,10 +936,14 @@ function Form() {
                                                     <option >Stanowy</option>
                                                     <option >Bezstanowy</option>
                                                 </select>
+                                               
                                             </div>
+                                           
                                         </div>
                                     </td>
-                                    <td>
+                                    <td onDoubleClick={() => {
+                                                updateRecordfaulty(val.id)
+                                            }}>
                                         <div className="table-cell">
                                             <div className="value">
                                                 <p>
@@ -594,7 +958,9 @@ function Form() {
                                                     <option >Tak</option>
                                                     <option >Nie</option>
                                                 </select>
+                                                
                                             </div>
+                                        
                                         </div>
                                     </td>
 
@@ -621,9 +987,9 @@ function Form() {
                         })}
                     </table>
                 </div>
-                <button onClick={generatePDF} className="dropbtn">Create PDF</button>
+                <button onClick={generatePDF} className="buttons">Stwórz PDF/Wydrukuj</button>
             </div>
         </div>
     )
-}
+                    }
 export default Form;

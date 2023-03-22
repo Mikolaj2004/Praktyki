@@ -43,19 +43,15 @@ function Header() {
         z.style.display = 'block';
         a.style.display = 'none';
         b.style.display = 'none';
+       
     };
     const ShowFormSort = () => {
-        var x = document.getElementById('formplace');
-        var y = document.getElementById('formuser');
-        var z = document.getElementById('formkind');
-        var a = document.getElementById('formsort');
-        var b = document.getElementById('formusernumber');
-
-        x.style.display = 'none';
-        y.style.display = 'none';
-        z.style.display = 'none';
-        a.style.display = 'block';
-        b.style.display = 'none';
+        let sort = document.getElementsByClassName("search-inputs")[0];
+        if(sort.style.display=="none"){
+            sort.style.display="block"
+        }else{
+        sort.style.display="none";
+        }
     }
     const ShowFormUsernumber = () => {
         var x = document.getElementById('formplace');

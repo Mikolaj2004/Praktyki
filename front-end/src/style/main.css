@@ -102,3 +102,30 @@ td{
   display: none;
   width:fit-content;
 }
+.btn1{
+  width:100%;
+  opacity:20px;
+  height:20px;
+  border: none;
+  color:black;
+  border: 1px solid black
+}
+.druk{
+  padding: 5px;
+
+}
+.search-inputs{
+  padding:5px;
+  display: none;
+}
+.search-inputs >input{
+  margin-right:10px;
+}
+.buttons, .add{
+  margin-top:8px;
+  background-color: #d9ac34;
+  border: 0;
+  color: white;
+  height:25px;
+  width: 200px;
+}

@@ -3,7 +3,7 @@ function Main() {
     return (
 <main>
     <div className="Main">
-        <Form/>
+         <Form/> 
     </div>
 </main>
 )}

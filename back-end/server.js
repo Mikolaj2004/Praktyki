@@ -62,7 +62,7 @@ app.get('/api/get/uzytkownik', (req, res) => {
         }
     });
 });
-
+//Update all record
 app.put('/update',(req,res)=>{
     const id = req.body.id;
     const place = req.body.place;
@@ -84,6 +84,142 @@ app.put('/update',(req,res)=>{
     }
     );
 })
+
+//Update one of record
+app.put('/updateplace',(req,res)=>{
+    const id = req.body.id;
+    const place = req.body.place;
+       conn.query("UPDATE wykaz_materialow SET place = ? WHERE id = ?", [place,id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+app.put('/updateusernumber',(req,res)=>{
+    const id = req.body.id;
+    const usernumber = req.body.usernumber;
+       conn.query("UPDATE wykaz_materialow SET usernumber = ? WHERE id = ?", [usernumber,id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+            console.log(result)
+        }
+    }
+    );
+})
+
+
+app.put('/updatename',(req,res)=>{
+    const id = req.body.id;
+    const name = req.body.name;
+        conn.query("UPDATE wykaz_materialow SET name = ? WHERE id = ?", [name, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updatekind',(req,res)=>{
+    const id = req.body.id;
+    const kind = req.body.kind;
+       conn.query("UPDATE wykaz_materialow SET kind = ? WHERE id = ?", [kind, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updatetype',(req,res)=>{
+    const id = req.body.id;
+    const type = req.body.type;
+        conn.query("UPDATE wykaz_materialow SET type = ? WHERE id = ?", [type, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updatefaulty',(req,res)=>{
+    const id = req.body.id;
+    const faulty = req.body.faulty;
+       conn.query("UPDATE wykaz_materialow SET faulty = ? WHERE id = ?", [faulty, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updateroomnumber',(req,res)=>{
+    const id = req.body.id;
+    const roomnumber = req.body.roomnumber;
+        conn.query("UPDATE wykaz_materialow SET roomnumber = ? WHERE id = ?",[roomnumber, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updateamount',(req,res)=>{
+    const id = req.body.id;
+    const amount = req.body.amount;
+    conn.query("UPDATE wykaz_materialow SET amount = ? WHERE id = ?", [amount, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+
+app.put('/updateuser',(req,res)=>{
+    const id = req.body.id;
+    const user = req.body.user;
+    conn.query("UPDATE wykaz_materialow SET user = ? WHERE id = ?", [user, id],(err,result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    }
+    );
+})
+
+//Display * from database
 app.post('/create', (req,res) =>{
     const usernumber = req.body.usernumber;
     const amount = req.body.amount;
@@ -145,7 +281,7 @@ app.post('/newplace',(req,res)=>{
 
         const usernumber = req.body.laboranci;
             conn.query('INSERT INTO laboranci (laboranci) VALUES (?)', 
-            [miejsce], (err,result) =>{
+            [usernumber], (err,result) =>{
                 if(err){
                     console.log("err");
                 }
@@ -436,6 +572,7 @@ app.delete('/delete/:id', (req,res)=>{
         }
     })
 })
+
 //Checking that server is available
 app.listen(3001, () =>{
     console.log("Great! Your server is available on port 3001 ")
